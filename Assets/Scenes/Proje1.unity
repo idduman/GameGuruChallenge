@@ -164,7 +164,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120366820}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b06d6775f7cdfa4e83a79df07a34f9d, type: 3}
   m_Name: 
@@ -172,6 +172,7 @@ MonoBehaviour:
   _backgroundPanel: {fileID: 931878530}
   _gridPanel: {fileID: 1271313186}
   _gridPanelMargin: 0.05
+  _testPanels: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2e1a45d85f5ea4cbf35280bed69e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraOffsetZ: 5
+  _cameraOffsetZ: 10
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2e1a45d85f5ea4cbf35280bed69e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraOffsetZ: 5
+  _cameraOffsetZ: 9.5
 --- !u!114 &1271313187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,7 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _squarePrefab: {fileID: 7867619514523220047, guid: 3084e12b976bd124493624c91a10c75a,
     type: 3}
-  _gridSize: 3
+  _gridSize: 8
   _gridSpacing: 0.05
 --- !u!1 &1964280021
 GameObject:

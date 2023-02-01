@@ -26,7 +26,7 @@ namespace GameGuruChallenge
             _sizeY = 2f * _halfSizeY;
             _sizeX = 2f * _halfSizeX;
             _lowerAnchor = _mainCamera.transform.position +
-                           new Vector3(-_halfSizeX, -_halfSizeY / 2f, _cameraOffsetZ);
+                           new Vector3(-_halfSizeX, -_halfSizeY, _cameraOffsetZ);
         }
 
         public override Vector3 GetNormalizedPosition()
@@ -40,7 +40,9 @@ namespace GameGuruChallenge
             transform.position = _lowerAnchor + 
                                  new Vector3(position.x * _sizeX,
                                      position.y * _sizeY,
-                                     position.z);
+                                     _cameraOffsetZ);
+            
+            Debug.Log("Lower: " + _lowerAnchor);
         }
 
         public override Vector3 GetSize()
@@ -69,16 +71,13 @@ namespace GameGuruChallenge
             transform.localScale = new Vector3(size.x * _sizeX, size.y * _sizeY, size.z);
             transform.parent = parent;
         }
-
         public override void Stretch(float top, float bottom, float left, float right)
         {
-            var normalizedPos = GetNormalizedPosition();
-            SetNormalizedPosition(new Vector3((0.5f + left - right) /2f,
-                (0.5f + bottom - top)/2f, normalizedPos.z));
+            SetNormalizedPosition(new Vector3((1f + left - right) /2f,
+                (1f + bottom - top)/2f, _cameraOffsetZ));
 
             var normalizedSize = GetNormalizedSize();
             SetNormalizedSize(new Vector3(1f - left - right, 1f - top - bottom, normalizedSize.z));
         }
     }
 }
-
