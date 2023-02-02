@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 120366821}
+  - component: {fileID: 120366823}
   - component: {fileID: 120366822}
   m_Layer: 0
   m_Name: GamePanel
@@ -173,6 +174,18 @@ MonoBehaviour:
   _gridPanel: {fileID: 1271313186}
   _gridPanelMargin: 0.05
   _testPanels: []
+--- !u!114 &120366823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120366820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c3edbacf3066944ba55ef44bc8748c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +353,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 16cfe9b3b331a0b498301f3c4feeafef,
     type: 3}
   m_Color: {r: 0.055300012, g: 0.26294973, b: 0.553, a: 1}
@@ -554,7 +567,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -4
   m_Sprite: {fileID: 7482667652216324306, guid: 16cfe9b3b331a0b498301f3c4feeafef,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -592,9 +605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca194371563bfe144b2fb59916381446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _squarePrefab: {fileID: 7867619514523220047, guid: 3084e12b976bd124493624c91a10c75a,
+  _squarePrefab: {fileID: 1008535684655569594, guid: 3084e12b976bd124493624c91a10c75a,
     type: 3}
-  _gridSize: 8
+  _gridSize: 5
   _gridSpacing: 0.05
 --- !u!1 &1964280021
 GameObject:

@@ -34,8 +34,8 @@ namespace GameGuruChallenge
             _gridPanel.SetSize(gridSize);
             var gridSizeNrm = _gridPanel.GetNormalizedSize();
             _gridPanel.SetNormalizedPosition(new Vector3(0.5f, gridPrc - gridSizeNrm.y/2f, 1f));
-            Debug.Log(_backgroundPanel.GetNormalizedPosition());
-            Debug.Log(_gridPanel.GetNormalizedPosition());
+            //Debug.Log(_backgroundPanel.GetNormalizedPosition());
+            //Debug.Log(_gridPanel.GetNormalizedPosition());
         }
     }
 }

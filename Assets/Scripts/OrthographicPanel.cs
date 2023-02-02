@@ -41,8 +41,6 @@ namespace GameGuruChallenge
                                  new Vector3(position.x * _sizeX,
                                      position.y * _sizeY,
                                      _cameraOffsetZ);
-            
-            Debug.Log("Lower: " + _lowerAnchor);
         }
 
         public override Vector3 GetSize()
