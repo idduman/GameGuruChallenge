@@ -10,14 +10,10 @@ namespace GameGuruChallenge
         [SerializeField] private GamePanel _backgroundPanel;
         [SerializeField] private GamePanel _gridPanel;
         [SerializeField] [Range(0f, 0.5f)] private float _gridPanelMargin = 0.05f;
-        
-        [SerializeField] private List<GamePanel> _testPanels = new();
-        private void Start()
-        {
-            Initialize();
-        }
 
-        private void Initialize()
+        [SerializeField] private List<GamePanel> _testPanels = new();
+
+        public void Initialize()
         {
             for (int i = 0; i < _testPanels.Count; i++)
             {

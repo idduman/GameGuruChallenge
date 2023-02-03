@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,26 +11,30 @@ namespace GameGuruChallenge
     [RequireComponent(typeof(GridLayoutGroup))]
     public class GridController : MonoBehaviour
     {
+        public event Action<int> Scored;
+
         [SerializeField] private SquareBehaviour _squarePrefab;
-        [SerializeField] private uint _gridSize = 3;
         [SerializeField] private float _gridSpacing = 0.05f;
+        private uint _gridSize = 3;
+        public int GridSize => (int)_gridSize;
 
         private GridLayoutGroup _gridLayout;
         private Camera _mainCamera;
         private LayerMask _squareMask;
 
         private List<SquareBehaviour> _squares = new();
+        public List<SquareBehaviour> Squares => _squares;
 
         private SquareBehaviour _highlightedSquare;
         private SquareBehaviour _selectedSquare;
+
+        private GridSolver _gridSolver;
 
         private void Awake()
         {
             _mainCamera = Camera.main;
             _gridLayout = GetComponent<GridLayoutGroup>();
             _squareMask = LayerMask.GetMask("Square");
-            Initialize();
-            
         }
 
         private void OnDestroy()
@@ -38,11 +44,19 @@ namespace GameGuruChallenge
             InputController.Released -= OnReleased;
         }
 
-        public void Initialize()
+        public void Initialize(uint gridSize)
         {
+            _gridSize = gridSize;
+            _gridSolver = new GridSolver();
             var size = 1f / _gridSize;
             var squareSize = size * (1f - 2f * _gridSpacing);
             _gridLayout.cellSize = size * Vector2.one;
+            
+            foreach (var s in _squares)
+            {
+                Destroy(s.gameObject);
+            }
+            _squares.Clear();
 
             for (int i = 0; i < _gridSize*_gridSize; i++)
             {
@@ -61,7 +75,6 @@ namespace GameGuruChallenge
 
         private void OnMoved(Vector3 pos)
         {
-            Debug.Log("Moved");
             Ray ray = _mainCamera.ScreenPointToRay(pos);
 
             if (!Physics.Raycast(ray, out var hit, int.MaxValue, _squareMask)
@@ -84,7 +97,6 @@ namespace GameGuruChallenge
                 _highlightedSquare.Highlight = false;
             
             square.Highlight = true;
-            Debug.Log("Highlighted: " + square);
 
             _highlightedSquare = square;
         }
@@ -100,7 +112,7 @@ namespace GameGuruChallenge
         
         private void OnReleased(Vector3 pos)
         {
-            if (!_selectedSquare)
+            if (!_highlightedSquare || !_selectedSquare)
                 return;
             
             Ray ray = _mainCamera.ScreenPointToRay(pos);
@@ -113,6 +125,21 @@ namespace GameGuruChallenge
             _selectedSquare.Highlight = false;
             _selectedSquare.Selected = false;
             _selectedSquare.Marked = true;
+            
+            var index = _squares.FindIndex(s => s.gameObject == _selectedSquare.gameObject);
+            var indices = _gridSolver.Evaluate(this, index);
+
+            _selectedSquare = null;
+
+            if (indices.Count < 3)
+                return;
+            
+            foreach (var i in indices)
+            {
+                _squares[i].Marked = false;
+            }
+
+            Scored?.Invoke(indices.Count);
         }
     }
 
